@@ -8,7 +8,7 @@ interface CustomError {
   message: string;
 }
 
-const BASE_URL = "https://api.github.com/repos/";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 export const api = axios.create({
   baseURL: BASE_URL,
@@ -23,10 +23,6 @@ export const api = axios.create({
 //요청 API
 api.interceptors.request.use(
   config => {
-    // let token = getToken();
-    // if (getToken() && config.headers) {
-    //   config.headers.Authorization = `Bearer ${token}`;
-    // }
     return config;
   },
   err => {
