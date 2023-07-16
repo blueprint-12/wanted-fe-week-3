@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { loadPostAsync } from "../../redux/slices/postSlice";
 import { RootReducerType } from "../../redux/configStore";
 import WantedAd from "../WantedAd";
+import ReactMarkdown from "react-markdown";
 
 type IntersectionObserverCallback = (
   entries: IntersectionObserverEntry[],
@@ -67,7 +68,7 @@ const MainPostList = () => {
           return (
             <div key={post.id}>
               <p>#{post.number}</p>
-              <p>{post.title}</p>
+              <ReactMarkdown>{post.title}</ReactMarkdown>
               <p>작성자: {post.user.login}</p>
               <p>작성일: {post.created_at}</p>
               <p>코멘트 수: {post.comments}</p>
