@@ -32,6 +32,12 @@ export const loadPostAsync =
       const data = res.data;
 
       const post_list: PostType[] = data?.map((post: any) => {
+        //TODO: 기존 Date객체로 만든 format을 한국식으로 바꾸기
+        const createdAt = new Date(post.created_at);
+        const formattedCreatedAt = `${createdAt.getFullYear()}년 ${
+          createdAt.getMonth() + 1
+        }월 ${createdAt.getDate()}일`;
+
         return {
           id: post.id,
           url: post.url,
@@ -43,7 +49,7 @@ export const loadPostAsync =
             avatar_url: post.user.avatar_url
           },
           comments: post.comments,
-          created_at: post.created_at,
+          created_at: formattedCreatedAt,
           body: post.body
         };
       });
